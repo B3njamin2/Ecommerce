@@ -208,7 +208,7 @@
             },
             totalCostWithCoupon: function() {
                 if (this.coupon_value > 0) {
-                    return store.state.totalCost * (parseInt(this.coupon_value) / 100);
+                    return store.state.totalCost * (1-(parseInt(this.coupon_value) / 100));
                 } else {
                     return store.state.totalCost;
                 }

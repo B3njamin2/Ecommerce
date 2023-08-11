@@ -72,7 +72,7 @@ def create_checkout_session(request):
         price = int(product.price * 100)
 
         if coupon_value > 0:
-            price = int(price * (int(coupon_value) / 100))
+            price = int(price * (1-(int(coupon_value) / 100)))
 
         obj = {
             'price_data': {
@@ -106,7 +106,7 @@ def create_checkout_session(request):
         total_price = total_price + (float(product.price) * int(item['quantity']))
 
     if coupon_value > 0:
-        total_price = total_price * ((coupon_value) / 100)
+        total_price = round(total_price * (1-(coupon_value / 100)), 2)
     
 
    
