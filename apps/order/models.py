@@ -21,18 +21,18 @@ class Order(models.Model):
     email = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=100)
-    place = models.CharField(max_length=100)
+    City = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    paid = models.BooleanField(default=False)
+    #paid = models.BooleanField(default=False)
     paid_amount = models.FloatField(blank=True, null=True)
     used_coupon = models.CharField(max_length=50, blank=True, null=True)
 
-    payment_intent = models.CharField(max_length=255)
+    #payment_intent = models.CharField(max_length=255)
 
-    shipped_date = models.DateTimeField(blank=True, null=True)
+    #shipped_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=ORDERED)
 
     

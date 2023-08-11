@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('zipcode', models.CharField(max_length=100)),
                 ('place', models.CharField(max_length=100)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('paid', models.BooleanField(default=False)),
+                #('paid', models.BooleanField(default=False)),
                 ('paid_amount', models.FloatField(blank=True, null=True)),
             ],
         ),

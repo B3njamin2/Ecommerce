@@ -92,14 +92,14 @@ def create_checkout_session(request):
     gateway = data['gateway']
     session = ''
     order_id = ''
-    payment_intent = ''
+    #payment_intent = ''
     
     
 
     #
     # Create order
 
-    orderid = checkout(request, data['first_name'], data['last_name'], data['email'], data['address'], data['zipcode'], data['place'], data['phone'])
+    orderid = checkout(request, data['first_name'], data['last_name'], data['email'], data['address'], data['zipcode'], data['City'], data['phone'])
 
     total_price = 0.00
     
@@ -115,13 +115,13 @@ def create_checkout_session(request):
    
     order = Order.objects.get(pk=orderid)
     
-    order.payment_intent = payment_intent
+    #order.payment_intent = payment_intent
     order.paid_amount = total_price
     order.used_coupon = coupon_code
     order.save()
 
 
-    return JsonResponse({'session': session, 'order': payment_intent})
+    return JsonResponse({'session': session, 'order': ' '})
 
 def api_add_to_cart(request):
     data = json.loads(request.body)

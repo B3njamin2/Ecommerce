@@ -21,16 +21,16 @@
                     </div>
                 </div>
 
-                <div class="field">
+                {% comment %} <div class="field">
                     <label>In stock</label>
 
                     <div class="control">
                         <input type="checkbox" name="instock"{% if instock %}checked="checked"{% endif %}>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
 
-            <div class="column is-4">
+            {% comment %} <div class="column is-4">
                 <h2 class="is-size-5">Price range</h2>
 
                 <div class="field">
@@ -46,7 +46,7 @@
                         <input type="number" name="price_to" class="input" value="{{ price_to }}">
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
 
             <div class="column is-4">
                 <h2 class="is-size-5">Sorting</h2>

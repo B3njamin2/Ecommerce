@@ -10,7 +10,7 @@ class UserprofileForm(forms.ModelForm):
 
         self.fields['address'].widget.attrs['class'] = 'input'
         self.fields['zipcode'].widget.attrs['class'] = 'input'
-        self.fields['place'].widget.attrs['class'] = 'input'
+        self.fields['City'].widget.attrs['class'] = 'input'
         self.fields['phone'].widget.attrs['class'] = 'input'
 
     class Meta:

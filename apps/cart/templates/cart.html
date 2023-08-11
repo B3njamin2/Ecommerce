@@ -135,10 +135,10 @@
                         </div>
     
                         <div class="field">
-                            <label>Place</label>
+                            <label>City</label>
     
                             <div class="control">
-                                <input class="input" type="text" name="place" v-model="place">
+                                <input class="input" type="text" name="City" v-model="City">
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                 email: '{{ email }}',
                 address: '{{ address }}',
                 zipcode: '{{ zipcode }}',
-                place: '{{ place }}',
+                City: '{{ City }}',
                 phone: '{{ phone }}',
                 products: [{{ productsstring|safe }}],
                 coupon_value: 0,
@@ -238,8 +238,8 @@
                     this.errors.push('Zip code is empty');
                 }
 
-                if (this.place === '') {
-                    this.errors.push('Place is empty');
+                if (this.City === '') {
+                    this.errors.push('City is empty');
                 }
 
                 if (this.phone === '') {
@@ -276,7 +276,7 @@
                     'email': this.email,
                     'address': this.address,
                     'zipcode': this.zipcode,
-                    'place': this.place,
+                    'City': this.City,
                     'phone': this.phone,
                     'coupon_code': this.coupon_code,
                     'gateway': gateway
@@ -426,3 +426,4 @@
     });
 </script>
 {% endblock %}
+

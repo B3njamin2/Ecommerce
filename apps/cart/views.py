@@ -20,10 +20,10 @@ def cart_detail(request):
         email = request.user.email
         address = request.user.userprofile.address
         zipcode = request.user.userprofile.zipcode
-        place = request.user.userprofile.place
+        City = request.user.userprofile.City
         phone = request.user.userprofile.phone
     else:
-        first_name = last_name = email = address = zipcode = place = phone = ''
+        first_name = last_name = email = address = zipcode = City = phone = ''
 
     context = {
         'cart': cart,
@@ -33,7 +33,7 @@ def cart_detail(request):
         'phone': phone,
         'address': address,
         'zipcode': zipcode,
-        'place': place,
+        'City': City,
         'productsstring': productsstring.rstrip(',')
     }
 
