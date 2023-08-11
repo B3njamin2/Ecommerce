@@ -23,35 +23,27 @@
 			</div>
 
 			<div id="main-navbar" class="navbar-menu" :class="{ 'is-active': menuClass }">
-				<div class="navbar-start">
-					<div class="navbar-item">
-						<form method="get" action="{% url 'search' %}">
-							<div class="field has-addons">
-								<div class="control">
-									<input type="text" class="input" placeholder="Search..." name="query">
-								</div>
-								<div class="control">
-									<button class="button is-success">Search</button>
-								</div>
-							</div>
-						</form>
+				
+					<div class="navbar-item column is-7" style="margin-left: 19%">
+						<div style="text-align: center;">
+							<form method="get" action="{% url 'search' %}">
+								
+									<div class="control">
+										<input type="text" class="input is-rounded" placeholder="Search..." name="query" style="max-width: 300px;"> 
+									</div>
+									<div class="control">
+										<button class="button is-success is-rounded">Search</button>
+									</div>
+								
+							</form>
+						</div>
 					</div>
-				</div>
+				
 				<div class="navbar-end">
 					{% for category in menu_categories %}
-						{% comment %} {% if not category.children.all %} {% endcomment %}
-                        	<a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
-						{% comment %} {% else %} 
-							<div class="navbar-item has-dropdown is-hoverable">
-								<a href="{% url 'category_detail' category.slug %}" class="navbar-link">{{ category.title }}</a>
-							
-								<div class="navbar-dropdown">
-									{% for subcategory in category.children.all %}
-										<a href="{% url 'category_detail' subcategory.slug %}" class="navbar-item">{{ subcategory.title }}</a>
-									{% endfor %}
-								</div>
-							</div>
-						{% endif %}		 {% endcomment %}
+						
+                        <a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
+						
 					{% endfor %}
 					
 					<div class="navbar-item">
@@ -87,7 +79,7 @@
 					<h2 class="subtitle">Bennie+</h2>
 				</div>
 
-				<div class="column is-8">
+				<div class="column is-8" style="margin-left:61%">
 					<a href="{% url 'contact' %}" class="navbar-item">Contact</a>
 					<a href="{% url 'about' %}" class="navbar-item">About</a>
 				</div>
@@ -145,4 +137,5 @@
 		display: inline-flex;
 		align-items: center;
 	}
+	
 </style>
