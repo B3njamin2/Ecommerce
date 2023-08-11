@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
 
+    'django_extensions',
     'apps.cart',
     'apps.coupon',
     'apps.core',
@@ -147,3 +148,8 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
+}
