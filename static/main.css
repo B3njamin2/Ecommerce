@@ -24,3 +24,6 @@ form ul:not(.errorlist) {
 .notification.space-below {
     margin-bottom: 20px;
 }
+/* button {
+    border-radius: 10px; 
+  } */

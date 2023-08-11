@@ -6,16 +6,16 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="{% url 'frontpage' %}">Home</a></li>
-            {% if category.parent %}
+            {% comment %} {% if category.parent %}
                 <li><a href="{% url 'category_detail' category.parent.slug %}">{{ category.parent.title }}</a></li>
-            {% endif %}
+            {% endif %} {% endcomment %}
             <li class="is-active"><a href="{% url 'category_detail' category.slug %}">{{ category.title }}</a></li>
         </ul>
     </nav>
 
     <h1 class="title">{{ category.title }}</h1>
 
-    {% if category.children.all %}
+    {% comment %} {% if category.children.all %}
         <div class="columns is-multiline">
             {% for subcategory in category.children.all %}
                 <div class="column is-3">
@@ -29,5 +29,9 @@
         {% with products as list_products %}
             {% include 'parts/product_list.html' %}
         {% endwith %}
-    {% endif %}
+    {% endif %} {% endcomment %}
+
+    {% with products as list_products %}
+        {% include 'parts/product_list.html' %}
+    {% endwith %}
 {% endblock %}

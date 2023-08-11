@@ -1,7 +1,7 @@
 <div class="newsletter-wrapper" id="newsletter-wrapper">
     <h2 class="subtitle">Subscribe to our newsletter</h2>
 
-    <form v-on:submit.prevent="onSubmit">
+    <form >
         <div class="field has-addons">
             <div class="control">
                 <input type="email" v-model="email" name="email" class="input" placeholder="Your e-mail address...">
@@ -12,12 +12,12 @@
         </div>
     </form>
 
-    <div class="notification is-success" v-if="showSuccess">
+    {% comment %} <div class="notification is-success" v-if="showSuccess">
         The e-mail address was saved!
-    </div>
+    </div> {% endcomment %}
 </div>
 
-<script>
+{% comment %} <script>
     var newsletterapp = new Vue({
         el: '#newsletter-wrapper',
         data () {
@@ -54,4 +54,4 @@
             }
         }
     })
-</script>
+</script> {% endcomment %}

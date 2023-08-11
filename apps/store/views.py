@@ -33,8 +33,8 @@ def search(request):
 
 def product_detail(request, category_slug, slug):
     product = get_object_or_404(Product, slug=slug)
-    product.num_visits = product.num_visits + 1
-    product.last_visit = datetime.now()
+    #product.num_visits = product.num_visits + 1
+    #product.last_visit = datetime.now()
     product.save()
 
     # Add review
@@ -49,18 +49,18 @@ def product_detail(request, category_slug, slug):
 
     #
 
-    related_products = list(product.category.products.filter(parent=None).exclude(id=product.id))
-    
+    related_products = list(product.category.products.all().exclude(id=product.id))
+    #.filter(parent=None)
     if len(related_products) >= 3:
         related_products = random.sample(related_products, 3)
 
-    if product.parent:
-        return redirect('product_detail', category_slug=category_slug, slug=product.parent.slug)
+    # if product.parent:
+    #     return redirect('product_detail', category_slug=category_slug, slug=product.parent.slug)
 
     imagesstring = "{'thumbnail': '%s', 'image': '%s'}," % (product.thumbnail.url, product.image.url)
 
-    for image in product.images.all():
-        imagesstring = imagesstring + ("{'thumbnail': '%s', 'image': '%s'}," % (image.thumbnail.url, image.image.url))
+    # for image in product.images.all():
+    #     imagesstring = imagesstring + ("{'thumbnail': '%s', 'image': '%s'}," % (image.thumbnail.url, image.image.url))
 
     cart = Cart(request)
 
@@ -79,7 +79,8 @@ def product_detail(request, category_slug, slug):
 
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    products = category.products.filter(parent=None)
+    products = category.products.all()
+    #.filter(parent=None)
 
     context = {
         'category': category,

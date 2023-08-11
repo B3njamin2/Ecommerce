@@ -39,9 +39,9 @@
 				</div>
 				<div class="navbar-end">
 					{% for category in menu_categories %}
-						{% if not category.children.all %}
+						{% comment %} {% if not category.children.all %} {% endcomment %}
                         	<a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
-						{% else %}
+						{% comment %} {% else %} 
 							<div class="navbar-item has-dropdown is-hoverable">
 								<a href="{% url 'category_detail' category.slug %}" class="navbar-link">{{ category.title }}</a>
 							
@@ -51,7 +51,7 @@
 									{% endfor %}
 								</div>
 							</div>
-						{% endif %}		
+						{% endif %}		 {% endcomment %}
 					{% endfor %}
 					
 					<div class="navbar-item">

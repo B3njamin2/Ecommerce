@@ -3,13 +3,15 @@ from django.core.files import File
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
+    #parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
+    slug = AutoSlugField(populate_from='title', unique=True)
+    #models.SlugField(max_length=255)
     ordering = models.IntegerField(default=0)
-    is_featured = models.BooleanField(default=False)
+    #is_featured = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -23,15 +25,16 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', related_name='variants', on_delete=models.CASCADE, blank=True, null=True)
+    #parent = models.ForeignKey('self', related_name='variants', on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
+    slug = AutoSlugField(populate_from='title', unique=True)
+    # models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.FloatField()
-    is_featured = models.BooleanField(default=False)
+    #is_featured = models.BooleanField(default=False)
     num_available = models.IntegerField(default=1)
-    num_visits = models.IntegerField(default=0)
-    last_visit = models.DateTimeField(blank=True, null=True)
+    # num_visits = models.IntegerField(default=0)
+    # last_visit = models.DateTimeField(blank=True, null=True)
 
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
@@ -83,28 +86,28 @@ class Product(models.Model):
         else:
             return 0
 
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+# class ProductImage(models.Model):
+#     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
 
-    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+#     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+#     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
 
-    def save(self, *args, **kwargs):
-        self.thumbnail = self.make_thumbnail(self.image)
+#     def save(self, *args, **kwargs):
+#         self.thumbnail = self.make_thumbnail(self.image)
 
-        super().save(*args, **kwargs)
+#         super().save(*args, **kwargs)
 
-    def make_thumbnail(self, image, size=(300, 200)):
-        img = Image.open(image)
-        img.convert('RGB')
-        img.thumbnail(size)
+#     def make_thumbnail(self, image, size=(300, 200)):
+#         img = Image.open(image)
+#         img.convert('RGB')
+#         img.thumbnail(size)
 
-        thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85)
+#         thumb_io = BytesIO()
+#         img.save(thumb_io, 'JPEG', quality=85)
 
-        thumbnail = File(thumb_io, name=image.name)
+#         thumbnail = File(thumb_io, name=image.name)
 
-        return thumbnail
+#         return thumbnail
 
 class ProductReview(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
