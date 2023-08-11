@@ -16,16 +16,6 @@ def order_pdf(obj):
     return mark_safe('<a href="{}">PDF</a>'.format(reverse('admin_order_pdf', args=[obj.id])))
 order_name.short_description = 'PDF'
 
-# def admin_order_shipped(modeladmin, request, queryset):
-#     for order in queryset:
-#         order.shipped_date = datetime.datetime.now()
-#         order.status = Order.SHIPPED
-#         order.save()
-
-#         html = render_to_string('order_sent.html', {'order': order})
-#         send_mail('Order sent', 'Your order has been sent!', 'noreply@benjamin.com', ['mail@benjamin.com', order.email], fail_silently=False, html_message=html)
-#     return 
-# admin_order_shipped.short_description = 'Set shipped'
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem

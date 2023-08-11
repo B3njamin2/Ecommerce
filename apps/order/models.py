@@ -26,13 +26,11 @@ class Order(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    #paid = models.BooleanField(default=False)
     paid_amount = models.FloatField(blank=True, null=True)
     used_coupon = models.CharField(max_length=50, blank=True, null=True)
 
-    #payment_intent = models.CharField(max_length=255)
 
-    #shipped_date = models.DateTimeField(blank=True, null=True)
+
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=ORDERED)
 
     

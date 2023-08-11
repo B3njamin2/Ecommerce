@@ -18,33 +18,6 @@ from apps.coupon.models import Coupon
 
 from .utilities import decrement_product_quantity, send_order_confirmation
 
-# def validate_payment(request):
-#     data = json.loads(request.body)
-#     razorpay_payment_id = data['razorpay_payment_id']
-#     razorpay_order_id = data['razorpay_order_id']
-#     razorpay_signature = data['razorpay_signature']
-
-#     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY_PUBLISHABLE, settings.RAZORPAY_API_KEY_HIDDEN))
-
-#     params_dict = {
-#         'razorpay_payment_id': razorpay_payment_id,
-#         'razorpay_order_id': razorpay_order_id,
-#         'razorpay_signature': razorpay_signature
-#     }
-
-#     res = client.utility.verify_payment_signature(params_dict)
-
-#     print(res)
-
-#     if not res:
-#         order = Order.objects.get(payment_intent=razorpay_order_id)
-#         order.paid = True
-#         order.save()
-
-#         decrement_product_quantity(order)
-#         send_order_confirmation(order)
-
-#     return JsonResponse({'success': True})
 
 def create_checkout_session(request):
     data = json.loads(request.body)
@@ -57,11 +30,7 @@ def create_checkout_session(request):
     if coupon_code != '':
         coupon = Coupon.objects.get(code=coupon_code)
 
-        #if coupon.can_use():
         coupon_value = coupon.value
-        #coupon.use()
-
-    #
 
     cart = Cart(request)
     items = []
@@ -71,32 +40,17 @@ def create_checkout_session(request):
 
         price = int(product.price ) * int(item['quantity'])
 
-        # if coupon_value > 0:
-        #     price = (price * (1-(int(coupon_value) / 100)))
 
         item['price'] = price
 
-        # obj = {
-        #     'price_data': {
-        #         'currency': 'usd',
-        #         'product_data': {
-        #             'name': product.title
-        #         },
-        #         'unit_amount': price
-        #     },
-        #     'quantity': item['quantity']
-        # }
-
-        # items.append(obj)
 
     gateway = data['gateway']
     session = ''
     order_id = ''
-    #payment_intent = ''
+   
     
     
 
-    #
     # Create order
 
     orderid = checkout(request, data['first_name'], data['last_name'], data['email'], data['address'], data['zipcode'], data['City'], data['phone'])
@@ -115,7 +69,6 @@ def create_checkout_session(request):
    
     order = Order.objects.get(pk=orderid)
     
-    #order.payment_intent = payment_intent
     order.paid_amount = total_price
     order.used_coupon = coupon_code
     order.save()

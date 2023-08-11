@@ -20,7 +20,6 @@ def webhook(request):
         payment_intent = event.data.object
         
         order = Order.objects.get(payment_intent=payment_intent.id)
-        #order.paid = True
         order.save()
 
         decrement_product_quantity(order)  
