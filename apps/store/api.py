@@ -69,23 +69,25 @@ def create_checkout_session(request):
     for item in cart:
         product = item['product']
 
-        price = int(product.price * 100)
+        price = int(product.price ) * int(item['quantity'])
 
-        if coupon_value > 0:
-            price = int(price * (1-(int(coupon_value) / 100)))
+        # if coupon_value > 0:
+        #     price = (price * (1-(int(coupon_value) / 100)))
 
-        obj = {
-            'price_data': {
-                'currency': 'usd',
-                'product_data': {
-                    'name': product.title
-                },
-                'unit_amount': price
-            },
-            'quantity': item['quantity']
-        }
+        item['price'] = price
 
-        items.append(obj)
+        # obj = {
+        #     'price_data': {
+        #         'currency': 'usd',
+        #         'product_data': {
+        #             'name': product.title
+        #         },
+        #         'unit_amount': price
+        #     },
+        #     'quantity': item['quantity']
+        # }
+
+        # items.append(obj)
 
     gateway = data['gateway']
     session = ''
@@ -100,11 +102,12 @@ def create_checkout_session(request):
     orderid = checkout(request, data['first_name'], data['last_name'], data['email'], data['address'], data['zipcode'], data['place'], data['phone'])
 
     total_price = 0.00
-
+    
     for item in cart:
         product = item['product']
         total_price = total_price + (float(product.price) * int(item['quantity']))
-
+       
+   
     if coupon_value > 0:
         total_price = round(total_price * (1-(coupon_value / 100)), 2)
     
