@@ -1,6 +1,6 @@
 # Ecommerce
 
-Sure, here are the general steps to run a Django web application from an existing repository using Python 3.8:
+ general steps to run a Django web application from an existing repository using Python 3.8:
 
 1. **Clone the Repository:**
    Clone the repository that contains the Django project onto your local machine using a version control tool like Git.
@@ -66,5 +66,3 @@ Sure, here are the general steps to run a Django web application from an existin
 
 9. **Access the Admin Interface (if applicable):**
    If your project uses the Django admin interface, you can access it by navigating to `http://127.0.0.1:8000/admin/` and logging in with the superuser credentials.
-
-Remember that these are general steps and might need to be adapted based on the specific structure of the repository or any project-specific configurations. Also, make sure you have Python 3.8 installed on your system before you start, as well as any additional system dependencies that your project might require.
