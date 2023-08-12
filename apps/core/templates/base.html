@@ -11,7 +11,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar is-dark" id="navbarapp">
+		<nav class="navbar is-dark" id="navbarapp" style="background-color: #308f87;">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="{% url 'frontpage' %}">Bennie+</a>
 
@@ -51,7 +51,7 @@
 					</div>
 
 					{% if request.user.is_authenticated %}
-						<div class="navbar-item">
+						<div class="navbar-item" style="margin-right: 20%">
 							<a href="{% url 'myaccount' %}" class="button is-light">My account</a>
 						</div>
 					{% else %}

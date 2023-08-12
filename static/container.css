@@ -862,7 +862,7 @@ a.box:active {
 }
 
 .button.is-primary.is-hovered,.button.is-primary:hover {
-    background-color: #bb9465;
+    background-color: #af7e43;
     border-color: transparent;
     color: #fff
 }
@@ -877,7 +877,7 @@ a.box:active {
 }
 
 .button.is-primary.is-active,.button.is-primary:active {
-    background-color: #b98c55;
+    background-color: #00b89c;
     border-color: transparent;
     color: #fff
 }
@@ -1234,7 +1234,7 @@ a.box:active {
 }
 
 .button.is-success.is-active,.button.is-success:active {
-    background-color: #3b88ae;
+    background-color: #3abb67;
     border-color: transparent;
     color: #fff
 }
@@ -1451,13 +1451,13 @@ a.box:active {
 }
 
 .button.is-danger {
-    background-color: #e4738a;
+    background-color: #f14668;
     border-color: transparent;
     color: #fff
 }
 
 .button.is-danger.is-hovered,.button.is-danger:hover {
-    background-color: #f45676;
+    background-color: #f03a5f;
     border-color: transparent;
     color: #fff
 }
